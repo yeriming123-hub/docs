@@ -39,9 +39,10 @@ jobs:
         env:
           ACTION_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           CACHE_MAX_AGE_DAYS: '7'
+          MAX_URLS: ${{ inputs.max_urls }}
         run: |
-          if [[ -n "${{ inputs.max_urls }}" ]]; then
-            npm run check-links-external -- --max ${{ inputs.max_urls }}
+          if [[ -n "$MAX_URLS" ]]; then
+            npm run check-links-external -- --max $MAX_URLS
           else
             npm run check-links-external
           fi
